@@ -53,8 +53,15 @@ const App = () => {
     }
   };
 
-  const nextQuestion = () => {};
-  // const nextQuestion = (e: MouseEvent<HTMLButtonElement>) => {};
+  const nextQuestion = (e: React.MouseEvent<HTMLButtonElement>) => {
+    const nextQuestion = number + 1;
+
+    if (nextQuestion === TOTAL_QUESTIONS) {
+      setGameOver(true);
+    } else {
+      setNumber(nextQuestion);
+    }
+  };
   return (
     <div className='App'>
       <h1>Quiz Game</h1>
