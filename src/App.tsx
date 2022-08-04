@@ -35,7 +35,6 @@ const App = () => {
     setLoading(false);
   };
 
-  // const checkAnswer = () => {};
   const checkAnswer = (e: React.MouseEvent<HTMLButtonElement>) => {
     if (!gameOver) {
       const answer = e.currentTarget.value;
