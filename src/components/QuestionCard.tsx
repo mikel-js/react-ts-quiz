@@ -1,5 +1,6 @@
 import React from 'react';
 import { AnswerObject } from '../App';
+import { Wrapper } from './QuestionCard.styles';
 
 type Props = {
   question: string;
@@ -19,7 +20,7 @@ const QuestionCard: React.FC<Props> = ({
   totalQuestions,
 }) => {
   return (
-    <div>
+    <Wrapper>
       <p className='number'>
         Question: {questionNr} / {totalQuestions}
       </p>
@@ -33,7 +34,7 @@ const QuestionCard: React.FC<Props> = ({
           </div>
         ))}
       </div>
-    </div>
+    </Wrapper>
   );
 };
 
