@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { Fragment, useState } from 'react';
 import { Difficulty, fetchQuizQuestions, QuestionState } from './API';
+import { GlobalStyle, Wrapper } from './App.style';
 import QuestionCard from './components/QuestionCard';
 
 export type AnswerObject = {
@@ -63,34 +64,37 @@ const App = () => {
     }
   };
   return (
-    <div className='App'>
-      <h1>Quiz Game</h1>
-      {gameOver || userAnswer.length === TOTAL_QUESTIONS ? (
-        <button className='start' onClick={startQuiz}>
-          Start
-        </button>
-      ) : null}
-      {!gameOver && <p className='score'>Score: {score}</p>}
-      {loading && <p>Loading...</p>}
-      {!loading && !gameOver && (
-        <QuestionCard
-          questionNr={number + 1}
-          totalQuestions={TOTAL_QUESTIONS}
-          question={questions[number].question}
-          answers={questions[number].choices}
-          userAnswer={userAnswer ? userAnswer[number] : undefined}
-          callback={checkAnswer}
-        />
-      )}
-      {!gameOver &&
-      !loading &&
-      userAnswer.length === number + 1 &&
-      number !== TOTAL_QUESTIONS - 1 ? (
-        <button className='next' onClick={nextQuestion}>
-          Next Question
-        </button>
-      ) : null}
-    </div>
+    <Fragment>
+      <GlobalStyle />
+      <Wrapper className='App'>
+        <h1>Quiz Game</h1>
+        {gameOver || userAnswer.length === TOTAL_QUESTIONS ? (
+          <button className='start' onClick={startQuiz}>
+            Start
+          </button>
+        ) : null}
+        {!gameOver && <p className='score'>Score: {score}</p>}
+        {loading && <p>Loading...</p>}
+        {!loading && !gameOver && (
+          <QuestionCard
+            questionNr={number + 1}
+            totalQuestions={TOTAL_QUESTIONS}
+            question={questions[number].question}
+            answers={questions[number].choices}
+            userAnswer={userAnswer ? userAnswer[number] : undefined}
+            callback={checkAnswer}
+          />
+        )}
+        {!gameOver &&
+        !loading &&
+        userAnswer.length === number + 1 &&
+        number !== TOTAL_QUESTIONS - 1 ? (
+          <button className='next' onClick={nextQuestion}>
+            Next Question
+          </button>
+        ) : null}
+      </Wrapper>
+    </Fragment>
   );
 };
 
